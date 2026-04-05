@@ -11,7 +11,7 @@ import Logo from './components/Logo';
 import { ARTICLES, VIDEOS, IMAGES } from './data';
 import { Article } from './types';
 import Markdown from 'react-markdown';
-import { X, Heart, Mail, Facebook, Twitter, Instagram } from 'lucide-react';
+import { X, Heart, Mail, Facebook, Instagram } from 'lucide-react';
 
 export default function App() {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
@@ -110,13 +110,10 @@ export default function App() {
                 Notre mission est de sensibiliser, éduquer et soutenir les familles touchées par l'autisme pour une société plus inclusive.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#3b82f6] transition-colors">
+                <a href="https://www.facebook.com/profile.php?id=61587332244018" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#3b82f6] transition-colors">
                   <Facebook className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#3b82f6] transition-colors">
-                  <Twitter className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#3b82f6] transition-colors">
+                <a href="https://www.instagram.com/auti_aura/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#3b82f6] transition-colors">
                   <Instagram className="w-5 h-5" />
                 </a>
               </div>
