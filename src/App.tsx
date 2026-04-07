@@ -4,6 +4,7 @@ import ChatBot from './components/ChatBot';
 import Logo from './components/Logo';
 import Home from './pages/Home';
 import AxisPage from './pages/AxisPage';
+import SensoryGame from './pages/SensoryGame';
 import { Heart, Mail, Facebook, Instagram } from 'lucide-react';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profil/:axisId" element={<AxisPage />} />
+            <Route path="/jeu" element={<SensoryGame />} />
           </Routes>
         </div>
 
@@ -73,6 +75,7 @@ export default function App() {
                   <li><a href="/profil/informe" className="hover:text-white transition-colors">Je m'informe</a></li>
                   <li><a href="/profil/parent" className="hover:text-white transition-colors">Je suis Parent</a></li>
                   <li><a href="/profil/enseignant" className="hover:text-white transition-colors">Je suis Enseignant</a></li>
+                  <li><a href="/jeu" className="hover:text-white transition-colors">Espace Détente (Jeu)</a></li>
                 </ul>
               </div>
               <div>
