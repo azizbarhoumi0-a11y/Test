@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { BookOpen, Video, Image as ImageIcon, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Logo from './Logo';
 
 export default function Navbar() {
@@ -16,7 +17,9 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <Logo />
+          <Link to="/">
+            <Logo />
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
