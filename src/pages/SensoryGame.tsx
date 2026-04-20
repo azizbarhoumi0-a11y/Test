@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const COLORS = [
   'bg-[#ef4444]', // Rouge
@@ -63,6 +64,7 @@ const InteractiveCircle = () => {
 };
 
 export default function SensoryGame() {
+  const { t } = useLanguage();
   // Génère un tableau de 48 éléments pour remplir l'écran
   const circles = Array.from({ length: 48 });
 
@@ -71,14 +73,13 @@ export default function SensoryGame() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-6">
         <Link to="/" className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 mb-8 transition-colors font-medium">
           <ArrowLeft className="w-4 h-4" />
-          Retour à l'accueil
+          {t('back_home')}
         </Link>
         
         <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Espace Détente</h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">{t('game_title')}</h1>
           <p className="text-slate-600 max-w-2xl mx-auto text-lg">
-            Touchez les cercles pour les voir changer de couleur et écouter une douce mélodie. 
-            Il n'y a pas de règles, pas de score, juste le plaisir de l'exploration sensorielle.
+            {t('game_desc')}
           </p>
         </div>
 

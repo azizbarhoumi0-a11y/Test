@@ -8,17 +8,24 @@ import ImageGallery from '../components/ImageGallery';
 import { ARTICLES, VIDEOS, IMAGES } from '../data';
 import { Article, Axis } from '../types';
 import Markdown from 'react-markdown';
+import InteractiveQuiz from '../components/InteractiveQuiz';
 import { X, ArrowLeft, Info, Users, GraduationCap } from 'lucide-react';
-
-const axesConfig = {
-  informe: { title: "Je m'informe", desc: "Découvrir et comprendre l'autisme", icon: Info, color: "bg-[#3b82f6]", lightColor: "bg-[#3b82f6]/10", textColor: "text-[#3b82f6]" },
-  parent: { title: "Je suis Parent", desc: "Ressources pour le quotidien", icon: Users, color: "bg-[#22c55e]", lightColor: "bg-[#22c55e]/10", textColor: "text-[#22c55e]" },
-  enseignant: { title: "Je suis Enseignant", desc: "Outils pour l'inclusion scolaire", icon: GraduationCap, color: "bg-[#eab308]", lightColor: "bg-[#eab308]/10", textColor: "text-[#eab308]" }
-};
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function AxisPage() {
   const { axisId } = useParams<{ axisId: string }>();
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+  const { t, lang } = useLanguage();
+
+  const axesConfig: Record<string, any> = {
+    informe: { title: t('axis_informe_title'), desc: t('axis_informe_header_desc'), icon: Info, color: "bg-[#3b82f6]", lightColor: "bg-[#3b82f6]/10", textColor: "text-[#3b82f6]" },
+    parent: { title: t('axis_parent_title'), desc: t('axis_parent_header_desc'), icon: Users, color: "bg-[#22c55e]", lightColor: "bg-[#22c55e]/10", textColor: "text-[#22c55e]" },
+    enseignant: { title: t('axis_enseignant_title'), desc: t('axis_enseignant_header_desc'), icon: GraduationCap, color: "bg-[#eab308]", lightColor: "bg-[#eab308]/10", textColor: "text-[#eab308]" }
+  };
+
+  const handleArticleClick = (article: Article) => {
+    setSelectedArticle(article);
+  };
 
   if (!axisId || !(axisId in axesConfig)) {
     return <Navigate to="/" replace />;
@@ -41,7 +48,7 @@ export default function AxisPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <Link to="/" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors font-medium bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-white/20">
             <ArrowLeft className="w-4 h-4" />
-            Retour à l'accueil
+            {t('back_home')}
           </Link>
           <div className="flex items-center gap-6">
             <div className="bg-white/20 p-5 rounded-3xl backdrop-blur-sm shadow-inner">
@@ -60,34 +67,24 @@ export default function AxisPage() {
         {filteredArticles.length > 0 && (
           <section id="articles" className="py-12 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <SectionHeader title="Articles Éducatifs" subtitle="Ressources approfondies pour ce profil." />
+              <SectionHeader 
+                title={t('articles_title')} 
+                subtitle={axis === 'enseignant' ? t('articles_sub_ens') : t('articles_sub_other')} 
+              />
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredArticles.map((article) => (
-                  <ArticleCard key={article.id} article={article} onClick={setSelectedArticle} />
+                  <ArticleCard key={article.id} article={article} onClick={handleArticleClick} />
                 ))}
               </div>
             </div>
           </section>
         )}
 
-        {filteredVideos.length > 0 && (
-          <section id="videos" className="py-12 bg-slate-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <SectionHeader title="Vidéos & Témoignages" subtitle="Contenus visuels pour ce profil." />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {filteredVideos.map((video) => (
-                  <VideoCard key={video.id} video={video} />
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {filteredImages.length > 0 && (
-          <section id="gallery" className="py-12 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <SectionHeader title="Galerie de Sensibilisation" subtitle="Images et messages pour ce profil." />
-              <ImageGallery images={filteredImages} />
+        {axis === 'informe' && (
+          <section className="py-12 bg-slate-50 relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <SectionHeader title={t('quiz_title')} subtitle={t('quiz_sub')} />
+              <InteractiveQuiz />
             </div>
           </section>
         )}
@@ -120,25 +117,20 @@ export default function AxisPage() {
               </button>
               
               <div className="overflow-y-auto">
-                <div className="h-64 sm:h-96 relative">
-                  <img 
-                    src={selectedArticle.image} 
-                    alt={selectedArticle.title}
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
-                </div>
-                
-                <div className="px-8 sm:px-16 pb-16 -mt-20 relative z-10">
-                  <div className={`${config.color} text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-6`}>
-                    {selectedArticle.category}
+                <div className="px-8 sm:px-16 py-16 relative z-10">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className={`${config.color} text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest inline-block`}>
+                      {selectedArticle.category}
+                    </div>
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-8 leading-tight">
-                    {selectedArticle.title}
-                  </h2>
-                  <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed">
-                    <Markdown>{selectedArticle.content}</Markdown>
+                  
+                  <div dir={lang === 'ar' ? 'rtl' : 'ltr'} className={lang === 'ar' ? 'text-right' : 'text-left'}>
+                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-8 leading-tight">
+                      {lang === 'ar' && selectedArticle.titleAr ? selectedArticle.titleAr : selectedArticle.title}
+                    </h2>
+                    <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed">
+                      <Markdown>{lang === 'ar' && selectedArticle.contentAr ? selectedArticle.contentAr : selectedArticle.content}</Markdown>
+                    </div>
                   </div>
                 </div>
               </div>

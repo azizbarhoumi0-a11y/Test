@@ -2,14 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import Hero from '../components/Hero';
 import { Info, Users, GraduationCap } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Home() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const axesConfig = [
-    { id: 'informe', title: "Je m'informe", desc: "Découvrir et comprendre l'autisme", icon: Info, color: "bg-[#3b82f6]" },
-    { id: 'parent', title: "Je suis Parent", desc: "Ressources pour le quotidien", icon: Users, color: "bg-[#22c55e]" },
-    { id: 'enseignant', title: "Je suis Enseignant", desc: "Outils pour l'inclusion scolaire", icon: GraduationCap, color: "bg-[#eab308]" }
+    { id: 'informe', title: t('axis_informe_title'), desc: t('axis_informe_desc'), icon: Info, color: "bg-[#3b82f6]" },
+    { id: 'parent', title: t('axis_parent_title'), desc: t('axis_parent_desc'), icon: Users, color: "bg-[#22c55e]" },
+    { id: 'enseignant', title: t('axis_enseignant_title'), desc: t('axis_enseignant_desc'), icon: GraduationCap, color: "bg-[#eab308]" }
   ];
 
   return (
@@ -50,11 +52,11 @@ export default function Home() {
                 <span className="w-12 h-12 rounded-2xl bg-[#3b82f6]/10 flex items-center justify-center text-[#3b82f6]">
                   <Info className="w-6 h-6" />
                 </span>
-                Présentation Auti-Aura
+                {t('home_pres_title')}
               </h2>
               <div className="prose prose-lg prose-slate">
                 <p className="text-slate-600 leading-relaxed">
-                  [Espace réservé pour la présentation d'Auti-Aura. Vous pourrez m'indiquer le texte à insérer ici plus tard. Cette section mettra en valeur votre mission, votre vision et l'impact que vous souhaitez avoir.]
+                  {t('home_pres_text')}
                 </p>
               </div>
             </motion.div>
@@ -71,11 +73,11 @@ export default function Home() {
                 <span className="w-12 h-12 rounded-2xl bg-[#22c55e]/10 flex items-center justify-center text-[#22c55e]">
                   <Users className="w-6 h-6" />
                 </span>
-                Le Projet Pacte
+                {t('home_pacte_title')}
               </h2>
               <div className="prose prose-lg prose-slate">
                 <p className="text-slate-600 leading-relaxed">
-                  [Espace réservé pour la présentation du Projet Pacte. Vous pourrez m'indiquer le texte à insérer ici plus tard. Cette section détaillera les objectifs et les actions concrètes du projet.]
+                  {t('home_pacte_text')}
                 </p>
               </div>
             </motion.div>

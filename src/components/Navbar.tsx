@@ -3,15 +3,17 @@ import { BookOpen, Video, Image as ImageIcon, Menu, X, PlayCircle } from 'lucide
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t, lang, setLang } = useLanguage();
 
   const navItems = [
-    { name: 'Articles', icon: BookOpen, href: '/#articles' },
-    { name: 'Vidéos', icon: Video, href: '/#videos' },
-    { name: 'Galerie', icon: ImageIcon, href: '/#gallery' },
-    { name: 'Jeu Sensoriel', icon: PlayCircle, href: '/jeu' },
+    { name: t('nav_informe'), icon: BookOpen, href: '/profil/informe' },
+    { name: t('nav_parent'), icon: BookOpen, href: '/profil/parent' },
+    { name: t('nav_enseignant'), icon: BookOpen, href: '/profil/enseignant' },
+    { name: t('nav_jeu'), icon: PlayCircle, href: '/jeu' },
   ];
 
   return (
@@ -45,13 +47,51 @@ export default function Navbar() {
                 </Link>
               )
             ))}
-            <button className="bg-slate-900 text-white px-5 py-2 rounded-full font-semibold hover:bg-slate-800 transition-all shadow-sm">
-              Soutenir
+          </div>
+
+          <div className="hidden md:flex bg-slate-100/50 rounded-full p-1 shadow-sm border border-slate-200">
+            <button
+              onClick={() => setLang('fr')}
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-colors ${
+                lang === 'fr' 
+                  ? 'bg-[#3b82f6] text-white' 
+                  : 'text-slate-500 hover:text-slate-900'
+              }`}
+            >
+              FR
+            </button>
+            <button
+              onClick={() => setLang('ar')}
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-colors ${
+                lang === 'ar' 
+                  ? 'bg-[#3b82f6] text-white' 
+                  : 'text-slate-500 hover:text-slate-900'
+              }`}
+            >
+              عربي
             </button>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-4">
+            <div className="flex bg-slate-100/50 rounded-full p-1 shadow-sm border border-slate-200">
+              <button
+                onClick={() => setLang('fr')}
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-colors ${
+                  lang === 'fr' ? 'bg-[#3b82f6] text-white' : 'text-slate-500'
+                }`}
+              >
+                FR
+              </button>
+              <button
+                onClick={() => setLang('ar')}
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-colors ${
+                  lang === 'ar' ? 'bg-[#3b82f6] text-white' : 'text-slate-500'
+                }`}
+              >
+                عربي
+              </button>
+            </div>
             <button onClick={() => setIsOpen(!isOpen)} className="text-slate-900">
               {isOpen ? <X /> : <Menu />}
             </button>
@@ -89,9 +129,6 @@ export default function Navbar() {
               </Link>
             )
           ))}
-          <button className="w-full bg-slate-900 text-white py-3 rounded-xl font-semibold">
-            Soutenir
-          </button>
         </motion.div>
       )}
     </nav>

@@ -6,9 +6,11 @@ export interface Article {
   excerpt: string;
   content: string;
   category: string;
-  date: string;
-  image: string;
+  image?: string;
   axis: Axis;
+  titleAr?: string;
+  contentAr?: string;
+  excerptAr?: string;
 }
 
 export interface Video {

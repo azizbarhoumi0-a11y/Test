@@ -1,7 +1,10 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative pt-32 pb-32 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -12,7 +15,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 bg-slate-100 text-slate-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6"
           >
             <Sparkles className="w-4 h-4 text-[#eab308]" />
-            Sensibilisation & Éducation
+            {t('hero_tag')}
           </motion.div>
           
           <motion.h1
@@ -21,7 +24,7 @@ export default function Hero() {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-6"
           >
-            Comprendre l'autisme pour <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ef4444] via-[#eab308] to-[#22c55e]">mieux accompagner</span> nos enfants
+            {t('hero_title_1')}<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ef4444] via-[#eab308] to-[#22c55e]">{t('hero_title_accent')}</span>{t('hero_title_2')}
           </motion.h1>
           
           <motion.p
@@ -30,7 +33,7 @@ export default function Hero() {
             transition={{ delay: 0.2 }}
             className="text-lg text-slate-600 mb-10 leading-relaxed"
           >
-            Une ressource complète pour les parents, les enseignants et toute personne souhaitant créer un monde plus inclusif et bienveillant pour les enfants autistes.
+            {t('hero_desc')}
           </motion.p>
           
           <motion.div
@@ -43,7 +46,7 @@ export default function Hero() {
               href="#axes"
               className="w-full sm:w-auto bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 flex items-center justify-center gap-2"
             >
-              Choisir mon profil
+              {t('hero_cta')}
               <ArrowRight className="w-5 h-5" />
             </a>
           </motion.div>
