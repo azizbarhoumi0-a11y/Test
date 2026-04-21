@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ChatBot from './components/ChatBot';
 import Logo from './components/Logo';
@@ -47,11 +47,11 @@ export default function App() {
               <div>
                 <h4 className="font-bold text-lg mb-6">{t('footer_nav_title')}</h4>
                 <ul className="space-y-4 text-slate-400">
-                  <li><Link to="/" className="hover:text-white transition-colors">{t('footer_nav_home')}</Link></li>
-                  <li><Link to="/profil/informe" className="hover:text-white transition-colors">{t('footer_nav_informe')}</Link></li>
-                  <li><Link to="/profil/parent" className="hover:text-white transition-colors">{t('footer_nav_parent')}</Link></li>
-                  <li><Link to="/profil/enseignant" className="hover:text-white transition-colors">{t('footer_nav_enseignant')}</Link></li>
-                  <li><Link to="/jeu" className="hover:text-white transition-colors">{t('footer_nav_jeu')}</Link></li>
+                  <li><a href="/" className="hover:text-white transition-colors">{t('footer_nav_home')}</a></li>
+                  <li><a href="/profil/informe" className="hover:text-white transition-colors">{t('footer_nav_informe')}</a></li>
+                  <li><a href="/profil/parent" className="hover:text-white transition-colors">{t('footer_nav_parent')}</a></li>
+                  <li><a href="/profil/enseignant" className="hover:text-white transition-colors">{t('footer_nav_enseignant')}</a></li>
+                  <li><a href="/jeu" className="hover:text-white transition-colors">{t('footer_nav_jeu')}</a></li>
                 </ul>
               </div>
               <div>
@@ -59,7 +59,7 @@ export default function App() {
                 <ul className="space-y-4 text-slate-400">
                   <li className="flex items-center gap-3">
                     <Mail className="w-4 h-4" />
-                    auti.aura.supcom@gmail.com
+                    contact@auti-aura.fr
                   </li>
                 </ul>
               </div>
