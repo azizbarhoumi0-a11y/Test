@@ -34,9 +34,15 @@ export const translations: Record<string, Record<Lang, string>> = {
 
   // Presentation (Home)
   home_pres_title: { fr: "Présentation Auti-Aura", ar: "تقديم Auti-Aura" },
-  home_pres_text: { fr: "[Espace réservé pour la présentation d'Auti-Aura.]", ar: "[مساحة مخصصة لتقديم Auti-Aura.]" },
-  home_pacte_title: { fr: "Le Projet Pacte", ar: "مشروع Pacte" },
-  home_pacte_text: { fr: "[Espace réservé pour la présentation du Projet Pacte.]", ar: "[مساحة مخصصة لتقديم مشروع Pacte.]" },
+  home_pres_text: { 
+    fr: "Auti'Aura est une initiative solidaire menée par l'équipe n°21 de SUP'COM visant à soutenir le Club des Bleus. Ce club, fondé par des parents membres de l'UNFT Bardo, accueille 12 enfants atteints d'autisme.", 
+    ar: "Auti'Aura هي مبادرة تضامنية يقودها الفريق رقم 21 من مدرسة SUP'COM تهدف إلى دعم نادي 'نادي الزرق' (Club des Bleus). هذا النادي، الذي أسسه آباء وأمهات أعضاء في الاتحاد الوطني للمرأة التونسية (UNFT Bardo)، يستقبل 12 طفلاً مصاباً بالتوحد." 
+  },
+  home_pacte_title: { fr: "Le Projet PACTE", ar: "مشروع PACTE" },
+  home_pacte_text: { 
+    fr: "Le **Projet PACTE** à **SUP'COM** est un exercice de pédagogie active formant les élèves ingénieurs à la gestion de projet et au travail d'équipe. En groupes, les étudiants mènent une action concrète sur le terrain (citoyenneté, humanitaire, écologie ou culture) en partenariat avec un organisme extérieur.", 
+    ar: "**مشروع PACTE** في مدرسة **SUP'COM** هو تمرين في البيداغوجيا النشطة يهدف إلى تدريب المهندسين الطلاب على إدارة المشاريع والعمل الجماعي. في مجموعات، يقوم الطلاب بتنفيذ عمل ملموس على أرض الواقع (مواطنة، عمل إنساني، بيئة، أو ثقافة) بالشراكة مع هيئة خارجية." 
+  },
 
   // Axis Page
   back_home: { fr: "Retour à l'accueil", ar: "العودة للرئيسية" },
@@ -54,6 +60,11 @@ export const translations: Record<string, Record<Lang, string>> = {
   // Game
   game_title: { fr: "Espace Détente", ar: "مساحة الاسترخاء" },
   game_desc: { fr: "Touchez les cercles pour les voir changer de couleur et écouter une douce mélodie. Il n'y a pas de règles, pas de score, juste le plaisir de l'exploration sensorielle.", ar: "المس الدوائر لترى تغير لونها والاستماع إلى لحن هادئ. لا توجد قواعد، ولا نقاط، فقط متعة الاستكشاف الحسي." },
+  game_intro_title: { fr: "Pourquoi ce jeu sensoriel ?", ar: "لماذا هذه اللعبة الحسية؟" },
+  game_intro_text: { 
+    fr: "Les personnes atteintes d'autisme ont souvent une perception sensorielle différente. Les stimuli extérieurs (bruits forts, lumières vives) peuvent être perçus de manière très intense, provoquant parfois une surcharge sensorielle.\n\nÀ l'inverse, des environnements visuels doux et prévisibles, accompagnés de sons apaisants, peuvent avoir un effet profondément calmant et structurant.\n\nCe jeu propose une expérience sensorielle contrôlée : des couleurs douces, des formes fluides et des sons subtils. Il n'y a ni contrainte de temps, ni règle complexe. Il permet simplement aux enfants (et aux adultes) de se détendre, de focaliser leur attention de manière positive et de retrouver un état d'apaisement par la répétition de gestes simples.", 
+    ar: "غالباً ما يكون لدى الأشخاص المصابين بالتوحد إدراك حسي مختلف. يمكن أن تبدو المحفزات الخارجية (الأصوات العالية، الأضواء الساطعة) أكثر كثافة بكثير، مما قد يؤدي أحياناً إلى عبء حسي مفرط.\n\nعلى النقيض من ذلك، يمكن للبيئات البصرية الهادئة والمتوقعة، المصحوبة بأصوات مريحة، أن يكون لها تأثير مهدئ ومنظم بعمق.\n\nتقدم هذه اللعبة تجربة حسية يمكن التحكم فيها: ألوان هادئة، أشكال سلسة، وأصوات خفيفة. لا يوجد ضغط للوقت، ولا قواعد معقدة. إنها ببساطة تسمح للأطفال (والبالغين) بالاسترخاء، وتركيز انتباههم بطريقة إيجابية، واستعادة حالة من الهدوء من خلال تكرار حركات بسيطة ومهدئة." 
+  },
 
   // Footer
   footer_desc: { fr: "Notre mission est de sensibiliser, éduquer et soutenir les familles touchées par l'autisme pour une société plus inclusive.", ar: "مهمتنا هي توعية وتعليم ودعم العائلات المتأثرة بالتوحد من أجل مجتمع أكثر شمولاً." },

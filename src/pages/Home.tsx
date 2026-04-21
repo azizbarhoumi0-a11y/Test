@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import Hero from '../components/Hero';
 import { Info, Users, GraduationCap } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import Markdown from 'react-markdown';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -54,10 +55,10 @@ export default function Home() {
                 </span>
                 {t('home_pres_title')}
               </h2>
-              <div className="prose prose-lg prose-slate">
-                <p className="text-slate-600 leading-relaxed">
-                  {t('home_pres_text')}
-                </p>
+              <div className="prose prose-lg prose-slate mt-4">
+                <div className="text-slate-600 leading-relaxed font-medium">
+                  <Markdown>{t('home_pres_text')}</Markdown>
+                </div>
               </div>
             </motion.div>
 
@@ -75,10 +76,10 @@ export default function Home() {
                 </span>
                 {t('home_pacte_title')}
               </h2>
-              <div className="prose prose-lg prose-slate">
-                <p className="text-slate-600 leading-relaxed">
-                  {t('home_pacte_text')}
-                </p>
+              <div className="prose prose-lg prose-slate mt-4">
+                <div className="text-slate-600 leading-relaxed font-medium">
+                  <Markdown>{t('home_pacte_text')}</Markdown>
+                </div>
               </div>
             </motion.div>
           </div>

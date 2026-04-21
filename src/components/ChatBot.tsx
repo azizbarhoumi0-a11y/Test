@@ -30,7 +30,7 @@ export default function ChatBot() {
 
     try {
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-2.5-flash',
         contents: userMessage,
         config: {
           systemInstruction: "Tu es un assistant bienveillant pour la plateforme Auti-Aura, spécialisé dans la sensibilisation à l'autisme chez les enfants. Réponds de manière empathique, claire et basée sur des faits scientifiques. Encourage toujours les parents à consulter des professionnels de santé. Réponds en français.",

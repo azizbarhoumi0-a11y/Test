@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -64,7 +64,7 @@ const InteractiveCircle = () => {
 };
 
 export default function SensoryGame() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   // Génère un tableau de 48 éléments pour remplir l'écran
   const circles = Array.from({ length: 48 });
 
@@ -78,9 +78,27 @@ export default function SensoryGame() {
         
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">{t('game_title')}</h1>
-          <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+          <p className="text-slate-600 max-w-2xl mx-auto text-lg mb-12">
             {t('game_desc')}
           </p>
+
+          {/* Explanation Section */}
+          <div className={`bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-slate-100 max-w-4xl mx-auto mb-16 relative overflow-hidden ${lang === 'ar' ? 'text-right' : 'text-left'}`}>
+            <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-[#3b82f6]/5 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-[#22c55e]/5 rounded-full blur-2xl"></div>
+            
+            <h2 className={`text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3 ${lang === 'ar' ? 'flex-row-reverse justify-start' : 'justify-start'}`}>
+              <span className="bg-[#3b82f6]/10 text-[#3b82f6] p-2 rounded-xl">
+                <Info className="w-6 h-6" />
+              </span>
+              {t('game_intro_title')}
+            </h2>
+            <div className={`space-y-4 text-slate-600 leading-relaxed font-medium ${lang === 'ar' ? 'text-right' : ''}`}>
+              {t('game_intro_text').split('\n\n').map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto pb-20">
