@@ -29,19 +29,35 @@ export default function ChatBot() {
     setIsLoading(true);
 
     try {
+      if (!process.env.GEMINI_API_KEY) {
+        setMessages(prev => [...prev, { role: 'bot', text: "Erreur de configuration : Clé API manquante. Si vous êtes sur Vercel, ajoutez 'GEMINI_API_KEY' dans les variables d'environnement de votre projet et redéployez." }]);
+        setIsLoading(false);
+        return;
+      }
+
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
         contents: userMessage,
         config: {
-          systemInstruction: "Tu es un assistant bienveillant pour la plateforme Auti-Aura, spécialisé dans la sensibilisation à l'autisme chez les enfants. Réponds de manière empathique, claire et basée sur des faits scientifiques. Encourage toujours les parents à consulter des professionnels de santé. Réponds en français.",
+          systemInstruction: `Tu es l'assistant expert du projet PACTE AUTi'AURA.
+MISSION : Soutenir les parents et éducateurs d'enfants autistes.
+TON : Bienveillant, empathique, jamais juge.
+RÈGLES :
+1. Valide TOUJOURS l'émotion de l'utilisateur en premier (ex: "C'est compréhensible d'être frustré").
+2. Donne des conseils PRÉCIS et COURTS (max 3-4 points).
+3. Utilise le Guide STPEA/UNICEF comme référence.
+4. Langues : Français et Arabe.
+5. Si l'utilisateur demande un diagnostic, rappelle que tu es une IA et oriente vers un médecin.
+6. Priorise les stratégies visuelles et la structuration de l'environnement.`,
         }
       });
 
       const botText = response.text || "Désolé, je n'ai pas pu générer de réponse.";
       setMessages(prev => [...prev, { role: 'bot', text: botText }]);
-    } catch (error) {
-      console.error(error);
-      setMessages(prev => [...prev, { role: 'bot', text: "Une erreur est survenue. Veuillez réessayer plus tard." }]);
+    } catch (error: any) {
+      console.error("Erreur détaillée:", error);
+      const errorMessage = error?.message || "Erreur inconnue";
+      setMessages(prev => [...prev, { role: 'bot', text: `Une erreur est survenue : ${errorMessage}. Veuillez vérifier la configuration de la clé API.` }]);
     } finally {
       setIsLoading(false);
     }
